@@ -4,7 +4,7 @@
   forc_conv_thr =   1.0000000000d-04
   outdir = './out/'
   prefix = 'aiida'
-  pseudo_dir = './pseudo/'
+  pseudo_dir = './'
   tprnfor = .true.
   tstress = .true.
   verbosity = 'high'
