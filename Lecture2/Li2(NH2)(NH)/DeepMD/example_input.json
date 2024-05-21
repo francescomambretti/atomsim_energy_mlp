@@ -1,0 +1,74 @@
+{
+    "model": {
+        "type_map": [
+            "H", "N","Li"
+        ],
+        "descriptor": {
+                    "type": "se_e2_a",
+                    "rcut_smth": 0.5,
+                    "rcut": 8.0,
+                    "neuron": [
+                        30,
+                        60,
+                        120
+                    ],
+                    "resnet_dt": false,
+                    "axis_neuron": 16,
+                    "seed": SEED1
+        },
+         "fitting_net": {
+            "neuron": [
+              240,
+              240,
+              240,
+              240
+            ],
+            "resnet_dt": true,
+            "seed": SEED2
+        }
+    },
+
+    "learning_rate": {
+        "type": "exp",
+        "start_lr": 0.001,
+        "scale_by_worker": "sqrt",
+        "decay_steps": 5000,
+        "stop_lr": 3.51e-08
+    },
+    "loss": {
+        "start_pref_e": 0.05,
+        "limit_pref_e": 5,
+        "start_pref_f": 1000,
+        "limit_pref_f": 1,
+        "start_pref_v": 0.01,
+        "limit_pref_v": 1.0
+    },
+    "training": {
+        "set_prefix": "set",
+        "stop_batch": 100000,
+        "disp_file": "lcurve.out",
+        "disp_freq": 100,
+        "numb_test": 5,
+        "save_freq": 1000,
+        "save_ckpt": "model.ckpt",
+        "disp_training": true,
+        "time_training": true,
+        "profiling": false,
+        "profiling_file": "timeline.json",
+        "systems": [
+        "/work/fmambretti/lithium_imide/NN/350K/",
+        "/work/fmambretti/lithium_imide/NN/400K/",
+        "/work/fmambretti/lithium_imide/NN/500K/",
+        "/work/fmambretti/lithium_imide/NN/600K/",
+        "/work/fmambretti/lithium_imide/NN/700K/"
+        ],
+        "batch_size": [
+            2,
+                        2,
+                        2,
+                        2,
+                        2
+        ],
+        "seed": SEED3
+    }
+}
