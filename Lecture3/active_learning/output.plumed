@@ -1,0 +1,79 @@
+PLUMED: PLUMED is starting
+PLUMED: Version: 2.9.0-dev (git: Unknown) compiled on Jun  7 2023 at 16:03:41
+PLUMED: Please cite these papers when using PLUMED [1][2]
+PLUMED: For further information see the PLUMED web page at http://www.plumed.org
+PLUMED: Root: /projects/atomisticsimulations/Manyi/Miniconda3/envs/deepmd_plumed_libtorc_v2.2.1/lib/plumed
+PLUMED: For installed feature, see /projects/atomisticsimulations/Manyi/Miniconda3/envs/deepmd_plumed_libtorc_v2.2.1/lib/plumed/src/config/config.txt
+PLUMED: Molecular dynamics engine: LAMMPS
+PLUMED: Precision of reals: 8
+PLUMED: Running over 1 node
+PLUMED: Number of threads: 1
+PLUMED: Cache line size: 512
+PLUMED: Number of atoms: 128
+PLUMED: File suffix: 
+PLUMED: FILE: plumed.dat
+PLUMED: Action UNITS
+PLUMED:   with label @0
+PLUMED:   length: A = 0.1 nm
+PLUMED:   energy: kj/mol
+PLUMED:   time: ps
+PLUMED:   charge: e
+PLUMED:   mass: amu
+PLUMED:   using physical units
+PLUMED:   inside PLUMED, Boltzmann constant is 0.00831446
+PLUMED: Action GROUP
+PLUMED:   with label H
+PLUMED:   list of atoms:
+PLUMED:  41 37 42
+PLUMED: Action COORDINATION
+PLUMED:   with label nh
+PLUMED:   between two groups of 1 and 3 atoms
+PLUMED:   first group:
+PLUMED:   4  
+PLUMED:   second group:
+PLUMED:   41  37  42  
+PLUMED:   using periodic boundary conditions
+PLUMED:   contacts are counted with cutoff 1.3.  Using rational switching function with parameters d0=0 nn=6 mm=12
+PLUMED: Action DISTANCE
+PLUMED:   with label d1
+PLUMED:   between atoms 2 33
+PLUMED:   using periodic boundary conditions
+PLUMED: Action OPES_METAD
+PLUMED:   with label opes
+PLUMED:   with arguments nh d1
+PLUMED:   added component to this action:  opes.bias 
+PLUMED:   added component to this action:  opes.rct 
+PLUMED:   added component to this action:  opes.zed 
+PLUMED:   added component to this action:  opes.neff 
+PLUMED:   added component to this action:  opes.nker 
+PLUMED:   temperature = 400
+PLUMED:   beta = 0.300681
+PLUMED:   depositing new kernels with PACE = 500
+PLUMED:   expected BARRIER is 120
+PLUMED:   using target distribution with BIASFACTOR gamma = 36.0817
+PLUMED:   adaptive SIGMA will be used, with ADAPTIVE_SIGMA_STRIDE = 5000
+PLUMED:     thus the first x kernel depositions will be skipped, x = ADAPTIVE_SIGMA_STRIDE/PACE = 10
+PLUMED:   kernels are truncated with KERNELS_CUTOFF = 8.61513
+PLUMED:   the value at cutoff is = 7.64256e-17
+PLUMED:   regularization EPSILON = 7.64256e-17
+PLUMED:   kernels will be compressed when closer than COMPRESSION_THRESHOLD = 1
+PLUMED:   Bibliography: [3][4]
+PLUMED: Action PRINT
+PLUMED:   with label @5
+PLUMED:   with stride 5
+PLUMED:   with arguments nh d1 opes.bias
+PLUMED:   on file COLVAR
+PLUMED:   with format  %f
+PLUMED: Action ENDPLUMED
+PLUMED:   with label @6
+PLUMED: END FILE: plumed.dat
+PLUMED: Timestep: 0.000250
+PLUMED: KbT has not been set by the MD engine
+PLUMED: It should be set by hand where needed
+PLUMED: Relevant bibliography:
+PLUMED:   [1] The PLUMED consortium, Nat. Methods 16, 670 (2019)
+PLUMED:   [2] Tribello, Bonomi, Branduardi, Camilloni, and Bussi, Comput. Phys. Commun. 185, 604 (2014)
+PLUMED:   [3] M. Invernizzi and M. Parrinello, J. Phys. Chem. Lett. 11, 2731-2736 (2020)
+PLUMED:   [4] M. Invernizzi and M. Parrinello, preprint arXiv:2201.09950 (2022)
+PLUMED: Please read and cite where appropriate!
+PLUMED: Finished setup
