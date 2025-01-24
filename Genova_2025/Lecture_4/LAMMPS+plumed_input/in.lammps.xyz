@@ -1,0 +1,55 @@
+variable        NSTEPS1           equal 6250000
+variable        DUMP_FREQ       equal 100
+variable        THERMO_FREQ      equal 10000
+variable        TEMP            equal 900
+variable	SEED2           equal 56352 
+variable        TAU_T           equal 0.05
+variable        TAU_P           equal 0.25
+
+units           metal
+boundary        p p f
+
+restart 500000 lmp.restart
+atom_style      atomic
+neigh_modify    delay 10 every 1
+
+read_data conf.data
+mass     1 6.941  # Li
+mass     2 51.9961  # Cr
+mass     3 14.0067  # N 
+mass     4 15.9994  # O 
+mass     5 1.00794  # H
+
+group         bottom id 1 2 3 7 8 9 13 16 19 20 21 24 51 52 53 57 58 59 63 66 69 70 71 74 101 102 103 107 108 109 113 116 119 120 121 124 151 152 153 157 158 159 163 166 169 170 171 174 201 202 203 207 208 209 213 216 219 220 221 224 251 252 253 257 258 259 263 266 269 270 271 274 
+
+group         atoms1 subtract all bottom
+
+variable potpath string /work/uraucci/umb/LiCrNO/training_16/from-frozen15-newH2
+
+pair_style deepmd ${potpath}/1model/frozen_model.pb ${potpath}/2model/frozen_model.pb ${potpath}/3model/frozen_model.pb ${potpath}/4model/frozen_model.pb  out_freq ${DUMP_FREQ} out_file model_devi.out
+ 
+pair_coeff * *
+
+# COMPUTE
+
+# TIMESTEP
+timestep	0.0002  #ps 
+thermo          ${THERMO_FREQ}
+thermo_style    custom step temp pe ke etotal density press vol
+thermo_modify   flush yes
+
+# DUMP
+dump            myDump all xyz ${DUMP_FREQ} dump.xyz
+dump_modify     myDump append yes element Li Cr N O H 
+dump            myDump3 all atom ${DUMP_FREQ} dump.lammpstrj
+dump_modify     myDump3 append yes
+
+
+# run- NVT
+velocity        all create ${TEMP} ${SEED2} dist gaussian
+fix             2 atoms1 nve
+fix             3 atoms1 temp/csvr ${TEMP} ${TEMP} ${TAU_T} ${SEED2}
+fix             5 all wall/reflect zlo 0.0 zhi 39
+fix             dpgen_plm all plumed plumedfile plumed.dat  outfile output.plumed.dat
+run             ${NSTEPS1}
+
