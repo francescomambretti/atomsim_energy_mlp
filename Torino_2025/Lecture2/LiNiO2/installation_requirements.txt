@@ -1,0 +1,4 @@
+# create virtual environment with conda
+conda create --name md_pp python=3.10   #md_pp= Molecular Dynamics post processing
+conda activate md_pp
+conda install --strict-channel-priority -c https://conda.ovito.org -c conda-forge ovito=3.10.5 #ovito-python free version
