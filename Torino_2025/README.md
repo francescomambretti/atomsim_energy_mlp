@@ -7,7 +7,7 @@ Material for the PhD course "Atomistic simulations for energy-related materials 
 Lecture 1:
 Google Colab to run a Quantum Espresso calculation on a very simple crystal:
 Please open it and make a copy in your own Google Drive by clicking 'File' -> 'Save a copy in my Drive'
-https://colab.research.google.com/drive/1N4_8j-wqB8eYi5AmeakVMPmL-3fgUy-K?usp=sharing
+https://colab.research.google.com/drive/1w-AbZd5cfec8H9SkJMcX8sk-alrLSdkq#scrollTo=jUcjxvqr71By
 
 Folder with files: 
 1) Lecture1_input_template (template inputs for cp2k and Quantum Espresso)
@@ -17,7 +17,7 @@ Folder with files:
 Lecture 2:
 Google Colab to simulate and analyze LiNiO2 with MACE-0.
 Please open it and make a copy in your own Google Drive by clicking 'File' -> 'Save a copy in my Drive'
-https://colab.research.google.com/drive/1MmdtK0ljoQcCSYV0fXa6qKxMbIlklBog?usp=sharing 
+https://colab.research.google.com/drive/1htWJNgrj7JpmqYNifH_4kF8FFhyzMH8M#scrollTo=8aKsTLQ9KGHT
 
 1) LiNiO2: files necessary to simulate this cathode material with foundation model MACE-MP-0
 2) MACE-MP-0_Cu+CH4: four trajectories of a Cu surface and the same surface + one CH_4 molecule simulated with foundation model MACE-MP-0
