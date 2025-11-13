@@ -1,0 +1,93 @@
+&GLOBAL
+  PRINT_LEVEL LOW
+   PROJECT ch3f
+!  RUN_TYPE WFN_OPT
+!   RUN_TYPE GEO_OPT
+  RUN_TYPE MD
+   SEED 300
+&END GLOBAL
+
+&MOTION
+
+  &MD
+   COMVEL_TOL 0.000005
+   ENSEMBLE NVT
+   STEPS 6000000 
+   TIMESTEP 0.5
+   TEMPERATURE 300.0
+!   TEMP_TOL 40
+
+    &THERMOSTAT
+      TYPE CSVR
+      &CSVR
+        TIMECON 100.
+      &END CSVR
+    &END THERMOSTAT
+  &END MD
+ 
+  &FREE_ENERGY
+    &METADYN
+       USE_PLUMED .TRUE.
+       PLUMED_INPUT_FILE ./plumed.dat
+    &END METADYN
+  &END FREE_ENERGY
+
+  &PRINT
+     &VELOCITIES OFF 
+     &END
+     &FORCES
+      &EACH
+         MD 2000
+      &END
+     &END
+     &TRAJECTORY
+      &EACH
+         MD 20
+      &END
+     &END
+     &RESTART
+      &EACH
+          MD 200000
+      &END
+     &END
+  &END PRINT
+
+&END MOTION
+
+
+&FORCE_EVAL
+  METHOD Quickstep
+  &DFT
+   CHARGE -1
+    &QS
+      METHOD PM6
+      !METHOD AM1
+      &SE
+      &END SE
+    &END QS
+    &SCF
+      !SCF_GUESS ATOMIC
+      EPS_SCF 1.0E-5
+      MAX_SCF 50
+       &OUTER_SCF
+          EPS_SCF 1.0E-5
+          MAX_SCF 500
+       &END
+    &END SCF
+  &END DFT
+
+
+  &SUBSYS
+    &CELL
+      ABC 10.0 10.0 10.0
+      PERIODIC NONE
+    &END CELL
+
+ &TOPOLOGY
+      COORD_FILE_FORMAT XYZ
+      COORD_FILE_NAME geom.xyz
+    &END TOPOLOGY
+   &END SUBSYS
+
+&END FORCE_EVAL
+
